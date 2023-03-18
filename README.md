@@ -12,16 +12,16 @@ Use react to create a postman-lite service called RESTy
 
 - [ci/cd](https://github.com/tyler-bennett52/resty/actions) (GitHub Actions)
 - [Sandbox (main)](https://jbds38-3000.csb.app/)
+- [Sandbox (state)](https://jfbbg1-3000.csb.app/)
+- [Sandbox (class-26)](https://m8ce6t-3000.csb.app/)
 
 ### Setup
-
 
 #### How to initialize/run your application (where applicable)
 
 - npm i to install dependencies
 - npm start to open page
 - alternatively access the app at this url <https://jbds38-3000.csb.app/>
-
 
 #### Features / Routes
 
