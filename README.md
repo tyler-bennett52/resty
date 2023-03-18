@@ -37,4 +37,4 @@ npm test - currently no tests
 
 #### Attribution
 
-Built from starter code
+Built from starter code. Used chatGPT to generate sample tests which showed me the getByText and getByLabelText methods. Used that format for the majority of my tests.
