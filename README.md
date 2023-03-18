@@ -11,7 +11,9 @@ Use react to create a postman-lite service called RESTy
 ### Links and Resources
 
 - [ci/cd](https://github.com/tyler-bennett52/resty/actions) (GitHub Actions)
-- [Code Sandbox Deployed Site](https://jbds38-3000.csb.app/)
+- [Sandbox (main)](https://jbds38-3000.csb.app/)
+- [Sandbox (state)](https://jfbbg1-3000.csb.app/)
+- [Sandbox (class-26)](https://m8ce6t-3000.csb.app/)
 
 ### Setup
 
