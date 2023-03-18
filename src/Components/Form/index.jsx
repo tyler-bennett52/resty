@@ -16,7 +16,8 @@ function Form(props) {
     <>
       <form onSubmit={handleSubmit}>
         <label>
-          <span>URL:</span>
+          <span>URL</span>
+          <input type="text" placeholder='swapi.dev/people/1' name="url-input" id="url-input" />
           <button type="submit">GO!</button>
         </label>
         <label className="methods">
