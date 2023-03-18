@@ -2,9 +2,14 @@ import './Form.scss';
 
 
 function Form(props) {
+
   const handleSubmit = (event) => {
     event.preventDefault();
     props.handleApiCall(props.requestParams);
+  }
+
+  const handleChangeBody = (event) => {
+    props.setRequestParams({...props.requestParams, data: (event.target.value)})
   }
 
   return (
@@ -27,7 +32,8 @@ function Form(props) {
         </label>
         {(props.requestParams.method === 'POST' || props.requestParams.method === 'PUT') &&
           <label htmlFor="request-body">
-            <textarea name="request-body" id="request-body" cols="30" rows="10"></textarea>
+            Request Body (Must be JSON)
+            <textarea onChange={(event) => handleChangeBody(event)} name="request-body" id="request-body" cols="30" rows="10"></textarea>
           </label>}
       </form>
     </>
