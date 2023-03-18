@@ -4,8 +4,9 @@ import Form from './';
 
 describe('Form', () => {
   test('Important elements render and handleSubmit is called with mock data', () => {
+    const mockSetParams = jest.fn();
     const mockHandleApiCall = jest.fn();
-    render(<Form handleApiCall={mockHandleApiCall} />);
+    render(<Form handleApiCall={mockHandleApiCall} requestParams={{method: 'GET', url: "https://pokeapi.co/api/v2/pokemon"}} setRequestParams={mockSetParams} />);
     const urlInput = screen.getByLabelText('URL');
     const submitButton = screen.getByText('GO!');
     fireEvent.change(urlInput, { target: { value: 'https://google.com' } });

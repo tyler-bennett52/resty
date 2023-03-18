@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 import './App.scss';
 
@@ -7,20 +8,15 @@ import Footer from './Components/Footer';
 import Form from './Components/Form';
 import Results from './Components/Results';
 
+
 function App(props) {
   const [data, setData] = useState(null);
-  const [requestParams, setRequestParams] = useState({url: 'swapi.dev/people/1', method: 'GET'});
+  const [requestParams, setRequestParams] = useState({url: 'https://swapi.dev/api/', method: 'GET'});
   
 
-  const callApi = (requestParams) => {
+  const callApi = async (requestParams) => {
     // mock output
-    const data = {
-      count: 2,
-      results: [
-        { name: 'fake thing 1', url: 'http://fakethings.com/1' },
-        { name: 'fake thing 2', url: 'http://fakethings.com/2' },
-      ],
-    };
+    const data = await axios(requestParams);
     setData(data);
     setRequestParams(requestParams);
   }
