@@ -33,7 +33,7 @@ npm test - currently no tests
 
 #### UML
 
-![Lab-08 UML](./public/resty-day1-UML%20(1).png)
+![Lab-26 UML](./public/resty-day1-UML%20(1).png)
 
 #### Attribution
 
