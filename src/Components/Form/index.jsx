@@ -1,4 +1,3 @@
-import React from 'react';
 import './Form.scss';
 
 
@@ -17,14 +16,18 @@ function Form(props) {
       <form onSubmit={handleSubmit}>
         <label>
           <span>URL</span>
-          <input type="text" placeholder='swapi.dev/people/1' name="url-input" id="url-input" />
+          <input
+            type="text"
+             placeholder='swapi.dev/people/1'
+              name="url-input" id="url-input"
+               onChange={(event) => props.setRequestParams({...props.requestParams, url: event.target.value})} />
           <button type="submit">GO!</button>
         </label>
         <label className="methods">
-          <span id="get">GET</span>
-          <span id="post">POST</span>
-          <span id="put">PUT</span>
-          <span id="delete">DELETE</span>
+          <span onClick={() => props.setRequestParams({...props.requestParams, method: 'GET'})} id="get">GET</span>
+          <span onClick={() => props.setRequestParams({...props.requestParams, method: 'POST'})} id="post">POST</span>
+          <span onClick={() => props.setRequestParams({...props.requestParams, method: 'PUT'})} id="put">PUT</span>
+          <span onClick={() => props.setRequestParams({...props.requestParams, method: 'DELETE'})} id="delete">DELETE</span>
         </label>
       </form>
     </>
