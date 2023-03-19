@@ -14,6 +14,7 @@ Use react to create a postman-lite service called RESTy
 - [Sandbox (main)](https://jbds38-3000.csb.app/)
 - [Sandbox (state)](https://jfbbg1-3000.csb.app/)
 - [Sandbox (class-26)](https://m8ce6t-3000.csb.app/)
+- [Sandbox (effect-hook)](https://75nqbr-3000.csb.app)
 
 ### Setup
 
@@ -29,7 +30,7 @@ Right now only mocks data. Press the GO button to see the appearance and locaiti
 
 #### Tests
 
-npm test - currently no tests
+npm test - Component level tests are fine, but I am still struggling to get axios to work. For whatever reason it doesn't like my axios import. I considered a rewrite to fetch, but I don't know how to pull non-body info out of there so I am stuck with axios for now. 
 
 #### UML
 

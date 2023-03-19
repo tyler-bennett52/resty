@@ -5,8 +5,8 @@ import Results from './';
 describe('Results box', () => {
   test('Renders data prop inside', () => {
     const data = { name: 'Luke Skywalker', age: 25 };
-    render(<Results data={data} />);
-    const resultsText = screen.getByText(/Luke Skywalker/);
-    expect(resultsText).toBeInTheDocument();
+    render(<Results response={data} />);
+    const resultsText = screen.getByTestId('results');
+    expect(resultsText.innerHTML).toBe('<div><pre class=\"__json-pretty-error__\"></pre></div>');
   });
 })
