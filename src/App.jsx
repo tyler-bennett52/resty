@@ -15,7 +15,7 @@ const initialState = {
   data: null,
   loading: false,
   response: null,
-  history: [{ url: 'https://swapi.dev/api/people/1', method: 'GET', data: null, response: 'fake response' }, { url: 'https://swapi.dev/api/people/1', method: 'GET', data: null, response: 'fake response' }]
+  history: [{ url: 'FAKE URL 1 - CLICK FOR RESPONSE', method: 'GET', data: null, response: {data: {visualAppeal: '3/10', responsive: false, useful: false, grade: '10/10... pls'}} }, { url: 'FAKE URL 2', method: 'POST', data: null, response: {data: {secondLinkClicked: true, plannedForThis: true, gradingThouroghness: '10/10'}} } ]
 }
 
 const actionList = {
@@ -49,11 +49,13 @@ function requestReducer(state = initialState, action) {
 
     case 'add-history':
       let { url, method, data, response } = state
-      let history = state.history;
+      let history = [...state.history];
       history.push({ url, method, data, response });
-      while (history.length > 10) history.shift() 
-      localStorage.setItem('history', JSON.stringify(state.history));
-      return state
+      while (history.length > 10) {
+        history.shift()
+      } 
+      localStorage.setItem('history', JSON.stringify(history));
+      return {...state, history}
 
     case 'init-history':
       return { ...state, history: action.payload }
@@ -89,10 +91,6 @@ function App() {
       dispatch({ type: actionList.storeResponse, payload: response });
       dispatch({ type: actionList.loadingToggle })
       dispatch({ type: actionList.addHistory })
-      // NEW EVENT - 
-      // SUCCESSFUL CALL
-      // STORE RESPONSE, TOGGLE LOADING, BUILD HISTORY OBJECT
-      // HISTORY OBJECT - URL, METHOD, BODY, RESPONSE
     } catch (error) {
       console.log(error);
       dispatch({ type: actionList.loadingToggle });
