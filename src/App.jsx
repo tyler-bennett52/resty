@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import axios from 'axios';
 
 import './App.scss';
@@ -7,6 +7,7 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Form from './Components/Form';
 import Results from './Components/Results';
+import { History } from './Components/History';
 
 const initialState = {
   url: 'https://swapi.dev/api/',
@@ -14,7 +15,7 @@ const initialState = {
   data: null,
   loading: false,
   response: null,
-  history: []
+  history: [{ url: 'https://swapi.dev/api/people/1', method: 'GET', data: null, response: 'fake response' }, { url: 'https://swapi.dev/api/people/1', method: 'GET', data: null, response: 'fake response' }]
 }
 
 const actionList = {
@@ -24,7 +25,8 @@ const actionList = {
   storeResponse: 'store-response',
   addHistory: 'add-history',
   responseFromHistory: 'response-from-history',
-  loadingToggle: 'loading-toggle'
+  loadingToggle: 'loading-toggle',
+  initHistory: 'init-history'
 }
 
 function requestReducer(state = initialState, action) {
@@ -36,23 +38,28 @@ function requestReducer(state = initialState, action) {
     case 'change-method':
       return { ...state, method: action.payload }
 
-      case 'change-body':
+    case 'change-body':
       return { ...state, data: action.payload }
 
     case 'store-response':
       return { ...state, response: action.payload }
 
     case 'loading-toggle':
-      return {...state, loading: !state.loading}
+      return { ...state, loading: !state.loading }
 
     case 'add-history':
-      state.history.push(action.payload);
+      let { url, method, data, response } = state
+      let history = state.history;
+      history.push({ url, method, data, response });
+      while (history.length > 10) history.shift() 
       localStorage.setItem('history', JSON.stringify(state.history));
       return state
 
+    case 'init-history':
+      return { ...state, history: action.payload }
+
     case 'response-from-history':
-      state.response = state.history[action.payload]
-      return state
+      return {...state, response: action.payload}
 
     default:
       break;
@@ -63,6 +70,15 @@ function requestReducer(state = initialState, action) {
 function App() {
 
   const [state, dispatch] = useReducer(requestReducer, initialState);
+  useEffect(() => {
+    let history = localStorage.getItem('history');
+    history = JSON.parse(history)
+    if (history?.length > 0) {
+      dispatch({ type: actionList.initHistory, payload: history })
+    }
+  }, [])
+
+
   const callApi = async () => {
     try {
       dispatch({ type: actionList.loadingToggle });
@@ -72,6 +88,11 @@ function App() {
       await new Promise(resolve => setTimeout(resolve, 500))
       dispatch({ type: actionList.storeResponse, payload: response });
       dispatch({ type: actionList.loadingToggle })
+      dispatch({ type: actionList.addHistory })
+      // NEW EVENT - 
+      // SUCCESSFUL CALL
+      // STORE RESPONSE, TOGGLE LOADING, BUILD HISTORY OBJECT
+      // HISTORY OBJECT - URL, METHOD, BODY, RESPONSE
     } catch (error) {
       console.log(error);
       dispatch({ type: actionList.loadingToggle });
@@ -84,7 +105,10 @@ function App() {
       <div style={{ textAlign: "center" }}>Request Method: {state.method}</div>
       <div style={{ textAlign: "center" }}>URL: {state.url}</div>
       <div style={{ textAlign: "center" }}>Request Body: {state.data}</div>
-      <Form handleApiCall={callApi} dispatch={dispatch} requestParams={state} actionList={actionList} />
+      <div className="container">
+        <History history={state.history} dispatch={dispatch} />
+        <Form handleApiCall={callApi} dispatch={dispatch} requestParams={state} actionList={actionList} />
+      </div>
       <Results response={state.response} loading={state.loading} />
       <Footer />
     </>
