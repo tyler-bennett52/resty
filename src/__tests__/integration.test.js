@@ -32,6 +32,6 @@ describe('App Integration Test', () => {
 
     // The next two lines wait for our axios call to finish, and then check that our json-pretty element is rendered inside our Results component. Neither one of these lines is ideal, but they do work as intended and I believe they assert what they need to.
     await new Promise(resolve => setTimeout(resolve, 2000))
-    expect(resultsElement.innerHTML[19]).toBe("j")
+    expect(resultsElement.innerHTML.slice(19, 30)).toBe('json-pretty')
   })
 })
