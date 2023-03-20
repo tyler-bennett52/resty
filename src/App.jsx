@@ -15,7 +15,7 @@ const initialState = {
   data: null,
   loading: false,
   response: null,
-  history: [{ url: 'FAKE URL 1 - CLICK FOR RESPONSE', method: 'GET', data: null, response: {data: {visualAppeal: '3/10', responsive: false, useful: false, grade: '10/10... pls'}} }, { url: 'FAKE URL 2', method: 'POST', data: null, response: {data: {secondLinkClicked: true, plannedForThis: true, gradingThouroghness: '10/10'}} } ]
+  history: [{ url: 'FAKE URL 1 - CLICK FOR RESPONSE', method: 'GET', data: null, response: {data: {visualAppeal: '3/10', responsive: false, useful: false, asGoodAsThunderClient: 'Not even close'}} }, { url: 'FAKE URL 2', method: 'POST', data: null, response: {data: {secondLinkClicked: true, plannedForThis: true, whyIPutASecondLink: 'To show off that sweet POST span'}} } ]
 }
 
 const actionList = {
