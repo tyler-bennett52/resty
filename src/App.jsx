@@ -10,15 +10,24 @@ import Results from './Components/Results';
 
 
 function App(props) {
-  const [data, setData] = useState(null);
-  const [requestParams, setRequestParams] = useState({url: 'https://swapi.dev/api/', method: 'GET'});
+  const [response, setResponse] = useState(null);
+  const [requestParams, setRequestParams] = useState({url: 'https://swapi.dev/api/', method: 'GET', data: null});
+  const [loading, setLoading] = useState(false);
   
 
   const callApi = async (requestParams) => {
     // mock output
-    const data = await axios(requestParams);
-    setData(data);
-    setRequestParams(requestParams);
+    try {
+      setLoading(true)
+      const response = await axios({...requestParams, data: JSON.parse(requestParams.data)});
+      await new Promise(resolve => setTimeout(resolve, 500))
+      setResponse(response);
+      setRequestParams(requestParams);
+      setLoading(false);
+    } catch (error) {
+      console.log(error)
+      setLoading(false);
+    }
   }
 
   return (
@@ -26,8 +35,9 @@ function App(props) {
       <Header />
       <div style={{ textAlign: "center" }}>Request Method: {requestParams.method}</div>
       <div style={{ textAlign: "center" }}>URL: {requestParams.url}</div>
+      <div style={{ textAlign: "center" }}>Request Body: {requestParams.data}</div>
       <Form handleApiCall={callApi} setRequestParams={setRequestParams} requestParams={requestParams} />
-      <Results data={data} />
+      <Results response={response} loading={loading} />
       <Footer />
     </>
   );

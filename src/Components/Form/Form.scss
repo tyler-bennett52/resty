@@ -4,9 +4,10 @@ $radius: 40%;
 form {
   // display: inline-block;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
   margin: 6% auto;
-  width: 25%;
+  width: fit-content;
   border: 2px white solid;
   box-shadow: 20px 20px 50px 8px black;
 
@@ -30,7 +31,23 @@ form {
   }
 
   #delete{
-   background-color: rgb(241, 29, 29); 
+   background-color: rgb(241, 29, 29);
+  }
+
+  .request-body {
+    transition: 2s;
+  }
+
+  .show {
+    transition: 1s;
+    opacity: 1;
+  }
+
+  .hide {
+    transition: 1s;
+    opacity: 0;
+    height: 0;
+    width: 0;
   }
 
   label {
@@ -46,7 +63,6 @@ form {
         color: black;
         font-weight: 700;
         font-size: 1.1rem;
-        margin-right: 1rem;
         padding: .25rem .5rem;
         background: #ccc;
         margin-bottom: 10px;
@@ -57,4 +73,15 @@ form {
       }
     }
   } 
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
