@@ -20,10 +20,10 @@ function Form(props) {
           <button type="submit">GO!</button>
         </label>
         <label className="methods">
-          <span onClick={() => props.setRequestParams({ ...props.requestParams, method: 'GET' })} id="get">GET</span>
-          <span onClick={() => props.setRequestParams({ ...props.requestParams, method: 'POST' })} id="post">POST</span>
-          <span onClick={() => props.setRequestParams({ ...props.requestParams, method: 'PUT' })} id="put">PUT</span>
-          <span onClick={() => props.setRequestParams({ ...props.requestParams, method: 'DELETE' })} id="delete">DELETE</span>
+          <span style={{border: props.requestParams.method === 'GET'? '2px yellow solid' : '1px black solid'}} onClick={() => props.setRequestParams({ ...props.requestParams, method: 'GET' })} id="get">GET</span>
+          <span style={{border: props.requestParams.method === 'POST'? '2px yellow solid' : '1px black solid'}} onClick={() => props.setRequestParams({ ...props.requestParams, method: 'POST' })} id="post">POST</span>
+          <span style={{border: props.requestParams.method === 'PUT'? '2px yellow solid' : '1px black solid'}} onClick={() => props.setRequestParams({ ...props.requestParams, method: 'PUT' })} id="put">PUT</span>
+          <span style={{border: props.requestParams.method === 'DELETE'? '2px yellow solid' : '1px black solid'}} onClick={() => props.setRequestParams({ ...props.requestParams, method: 'DELETE' })} id="delete">DELETE</span>
         </label>
         {(props.requestParams.method === 'POST' || props.requestParams.method === 'PUT') &&
           <label htmlFor="request-body">
