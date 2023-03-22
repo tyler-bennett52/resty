@@ -17,13 +17,11 @@ Use react to create a postman-lite service called RESTy
 
 ### Setup
 
-
 #### How to initialize/run your application (where applicable)
 
 - npm i to install dependencies
 - npm start to open page
 - alternatively access the app at this url <https://jbds38-3000.csb.app/>
-
 
 #### Features / Routes
 
