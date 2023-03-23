@@ -5,9 +5,9 @@ import 'react-json-pretty/themes/monikai.css';
 
 function Results(props) {
   return (
-    <section data-testid="results">
+    <section onClick={() => console.log(props.response)} data-testid="results">
       {props.loading && <h3 id='loading' style={{textAlign:"center"}}>Loading...</h3>}
-      {props.response && <JSONPretty data={props.response.data} ></JSONPretty>}
+      {props.response && <JSONPretty data={props.response?.data} ></JSONPretty>}
       {/* <pre>{props.data ? JSON.stringify(props.data, undefined, 2) : null}</pre> */}
     </section>
   );
